@@ -9,18 +9,18 @@ public class Function {
         } else {
             double i = 0;
             double j = PI;
-            double result = (i + j) / 2;
+            double result = (i + j) / 2.0;
             double judge = Math.cos(result) - x;
-            while (Math.abs(judge) > 1e-20) {
-                result = (i + j) / 2;
+            while (Math.abs(judge) > 1e-12) { //mind the accuracy!
                 if (Math.cos(result) - x > 0) {
-                    j = result;
-                } else {
                     i = result;
+                } else {
+                    j = result;
                 }
-
+                result = (i + j) / 2;//set i and j first, then set the result!
                 judge = Math.cos(result) - x;
             }
+            System.out.println("arccos(" + x + ")=" + result);
             return result;
         }
     }
